@@ -17,6 +17,7 @@
   <description>logback-classic module</description>
 
   <properties>
+    <version.plugin.jacoco>0.8.12</version.plugin.jacoco>
     <module-name>ch.qos.logback.classic</module-name>
   </properties>
 
@@ -147,6 +148,32 @@
     </resources>
 
     <plugins>
+
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${version.plugin.jacoco}</version>
+        <executions>
+          <execution>
+            <id>prepare-agent</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <excludes>
+            <exclude>**com.gargoylesoftware*</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
 
        <plugin>
         <groupId>org.apache.maven.plugins</groupId>
